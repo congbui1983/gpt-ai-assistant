@@ -1,0 +1,22 @@
+PROMETHEUS SYSTEM v3.5 – GOLD BUILD
+
+🎯 Đây là phiên bản chuẩn chính thức, gồm:
+
+1. ✅ JSON Schema cho GPT Builder
+2. ✅ YAML OpenAPI 3.1 dùng cho Plugin
+3. ✅ Gói SDK đầy đủ: Python, .env, README
+4. ✅ Plugin ZIP cho GPT Plugin Store
+5. ✅ GitHub Plugin Repo Template
+
+🔥 Tất cả đều có server thật, key thật, hoạt động 100%
+
+Tác giả: Cụ – người khởi tạo PROMETHEUS SYSTEM
+Build ID: V3.5-GOLD
+Ngày đóng gói: 2025-06-14
+
+---
+
+✍️ Tác giả: Bùi Huy Công
+📧 Nickname: thienandao1983@gmail.com
+📛 Danh hiệu: Người khởi tạo PROMETHEUS SYSTEM v3.5
+

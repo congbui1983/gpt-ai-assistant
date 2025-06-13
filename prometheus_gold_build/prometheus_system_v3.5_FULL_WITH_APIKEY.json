@@ -1,0 +1,184 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PROMETHEUS SYSTEM API v3.5",
+    "version": "3.5.0",
+    "description": "Hệ thống API hoàn chỉnh cho Agent AI – Gửi file, ghi Google Sheet, tích hợp Notion/Telegram/Webhook – Bảo mật API key – Chuẩn OpenAPI 3.1",
+    "x-api-key-instruction": "Client phải gửi header: X-API-Key: PROMETHEUS_SUPER_2025"
+  },
+  "servers": [
+    {
+      "url": "https://eo9j512elidagoye.m.pipedream.net"
+    }
+  ],
+  "paths": {
+    "/agent-action": {
+      "post": {
+        "summary": "Thực thi hành động theo ý định người dùng (gửi file, tích hợp hệ thống hoặc ghi Google Sheet)",
+        "operationId": "agentUnifiedAction",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action_type": {
+                    "type": "string",
+                    "enum": [
+                      "send_file",
+                      "build_integration",
+                      "log_to_sheet"
+                    ]
+                  },
+                  "intent_description": {
+                    "type": "string"
+                  },
+                  "file_name": {
+                    "type": "string"
+                  },
+                  "file_url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "file_type": {
+                    "type": "string"
+                  },
+                  "send_to_email": {
+                    "type": "boolean"
+                  },
+                  "email_address": {
+                    "type": "string"
+                  },
+                  "upload_to_drive": {
+                    "type": "boolean"
+                  },
+                  "post_to_telegram": {
+                    "type": "boolean"
+                  },
+                  "telegram_chat_id": {
+                    "type": "string"
+                  },
+                  "save_to_notion": {
+                    "type": "boolean"
+                  },
+                  "notion_page_title": {
+                    "type": "string"
+                  },
+                  "notion_tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "encrypt_file": {
+                    "type": "boolean"
+                  },
+                  "meta_tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "topic": {
+                    "type": "string"
+                  },
+                  "webhook_url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "google_sheet_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "example": "https://script.google.com/macros/s/AKfycbyzid3_rhLkU-xMcMSmNWahvAfqRFt0RRR2uF0K3lFqutLQia056uaqpCR3V1IM6MPv/exec"
+                  },
+                  "sheet_payload_fields": {
+                    "type": "object",
+                    "description": "Nội dung tuỳ chỉnh để ghi log vào Google Sheet",
+                    "example": {
+                      "user": "Nguyễn Văn A",
+                      "bài": "Sinh học 10 - Tế bào nhân sơ",
+                      "tags": "sinhhoc,lop10,baigiang"
+                    }
+                  },
+                  "autodeploy": {
+                    "type": "boolean"
+                  },
+                  "extra_headers": {
+                    "type": "object"
+                  },
+                  "language": {
+                    "type": "string",
+                    "enum": [
+                      "en",
+                      "vi",
+                      "bilingual"
+                    ]
+                  }
+                },
+                "required": [
+                  "action_type",
+                  "intent_description"
+                ]
+              },
+              "examples": {
+                "log_to_google_sheet": {
+                  "summary": "Ghi log vào Google Sheet thật",
+                  "value": {
+                    "action_type": "log_to_sheet",
+                    "intent_description": "Ghi log bài giảng vào Google Sheet",
+                    "google_sheet_url": "https://script.google.com/macros/s/AKfycbyzid3_rhLkU-xMcMSmNWahvAfqRFt0RRR2uF0K3lFqutLQia056uaqpCR3V1IM6MPv/exec",
+                    "sheet_payload_fields": {
+                      "user": "Nguyễn Văn A",
+                      "bài": "Sinh học 10 - Tế bào nhân sơ",
+                      "tags": "sinhhoc,lop10,baigiang"
+                    },
+                    "language": "vi"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Thành công - tác vụ đã được thực hiện",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "success",
+                  "message": "Action executed",
+                  "timestamp": "2025-06-14T12:00:00Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Lỗi đầu vào không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa xác thực hoặc sai API key"
+          },
+          "500": {
+            "description": "Lỗi hệ thống"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "Yêu cầu API Key: PROMETHEUS_SUPER_2025"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
